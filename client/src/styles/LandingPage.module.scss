@@ -1,0 +1,93 @@
+.container {
+    font-family: "Roboto", sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url("./assets/landing_page_bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading_card_wrapper {
+    width: 500px;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: -1px 0px 5px var(--auth-main-color), 0px 1px 5px var(--auth-main-color),;
+    border-radius: 20px;
+    color: white;
+    font-family: "IBM Plex Sans", sans-serif;
+
+    .hc_container {
+        display: flex;
+        flex-direction: column;
+        padding: 25px 15px 25px 20px;
+
+        h1 {
+            margin: 0;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(90deg, rgba(30,213,169, 1) 35%, rgba(1,180,228, 1) 65%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            margin: 0;
+            padding-top: 10px;
+            padding-bottom: 20px;
+            color: #d2d2d2;
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+        .buttons_container {
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+            button {
+                padding: 15px 30px;
+                border: none;
+                margin: 0 10px 0 10px;
+                border-radius: 10px;
+                font-family: "IBM Plex Sans", sans-serif;
+                font-size: 14px;
+                font-weight: 700;
+                color: white;
+            }
+
+            .button1 {
+                background-color: #2195f3c6;
+            }
+            .button2 {
+                background-color: #f32121c6;
+            }
+
+            .button1:hover {
+                // color: #255784;
+                background-color: var(--auth-main-color);
+                box-shadow: 0 0 10px var(--auth-main-color), 0 0 20px var(--auth-main-color), 0 0 40px var(--auth-main-color);
+            }
+
+            .button2:hover {
+                // color: #842525;
+                background-color: var(--auth-acc-color);
+                box-shadow: 0 0 10px var(--auth-acc-color), 0 0 20px var(--auth-acc-color), 0 0 40px var(--auth-acc-color);
+            }
+        }
+    }
+}
+
+@media all and (max-width: 750px) {
+    .container {
+        justify-content: center;
+    }
+}
+

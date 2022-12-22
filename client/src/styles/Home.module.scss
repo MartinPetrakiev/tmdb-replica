@@ -1,0 +1,81 @@
+.banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("./assets/banner_image.jpg");
+    background-position: 20% 80%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 250px;
+
+    .content {
+        margin-bottom: 20px;
+        font-family: "Source Sans Pro", sans-serif;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-content: flex-start;
+        padding: 30px 40px;
+        text-shadow: 1px 1px 5px var(--main-bg-color);
+        h2 {
+            font-size: 3em;
+            font-weight: 700;
+            line-height: 1;
+            margin: 0;
+        }
+        h3 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0;
+        }
+    }
+}
+
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    .content_wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .row_header {
+            font-family: "Source Sans Pro", sans-serif;
+            padding-left: 40px;
+            padding-right: 40px;
+            h2 {
+                font-size: 1.5em;
+                font-weight: 600;
+                margin: 0;
+            }
+        }
+        .cards {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            align-content: flex-start;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            transition: height 0.5s linear;
+            font-family: "Source Sans Pro", sans-serif;
+
+            &::-webkit-scrollbar {
+                height: 8px;
+                width: 8px;
+            }
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(219, 219, 219);
+                border-radius: 30px;
+            }
+        }
+    }
+}

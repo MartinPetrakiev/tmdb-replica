@@ -1,0 +1,103 @@
+.header {
+    font-family: "IBM Plex Sans", sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #303030;
+    height: 60px;
+
+    .title {
+        color: white;
+        font-family: "Gluten", cursive;
+        margin-left: 2%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        flex-basis: 30%;
+        h1 {
+            font-size: 25px;
+            font-weight: 500;
+            margin: 0;
+        }
+        .icon {
+            font-size: 30px;
+            margin-right: 5px;
+            color: var(--main-acc-color);
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .search_bar {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-self: center;
+        flex-basis: 65%;
+        margin-left: 10%;
+        input[type="text"] {
+            font-family: "IBM Plex Sans", sans-serif;
+            font-size: 14px;
+            color: white;
+            width: 300px;
+            height: 35px;
+            padding: 1px 10px 1px 10px;
+            border: 2px solid #4e4e4e;
+            background-color: transparent;
+            margin-right: 5px;
+            border-radius: 20px;
+        }
+        input:focus {
+            outline: none;
+            border: 2px solid var(--main-acc-color);
+        }
+        .button_search {
+            margin-left: -40px;
+            height: 25px;
+            width: 50px;
+            color: #4e4e4e;
+        }
+        input:focus + .button_search {
+            color: var(--main-acc-color);
+        }
+        .button:hover {
+            cursor: pointer;
+        }
+    }
+
+    .avatar {
+        flex-basis: 5%;
+        div > div {
+            background-color: var(--main-acc-color);
+            color: var(--main-bg-color);
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+@media all and (max-width: 750px) {
+    .header {
+        flex-direction: column;
+        justify-content: unset;
+        height: unset;
+
+        .title {
+            flex-basis: unset;
+            margin: 10px 50px;
+            text-align: center;
+        }
+        .search_bar {
+            margin: 10px auto;
+            input[type="text"] {
+                width: 100%;
+            }
+        }
+        .avatar {
+            margin: 10px auto;
+        }
+    }
+}

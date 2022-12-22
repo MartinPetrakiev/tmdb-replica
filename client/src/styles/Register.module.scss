@@ -1,0 +1,30 @@
+.container {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .btn_submit {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family: "IBM Plex Sans", sans-serif;
+        font-weight: 700;
+        box-shadow: -1px 0px 5px var(--auth-main-color), 0px 1px 5px var(--auth-acc-color);
+        background-image: linear-gradient(45deg, var(--auth-main-color), var(--auth-acc-color));
+        background-size: 100%;
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -moz-background-clip: text;
+        -moz-text-fill-color: transparent;
+    }
+}
