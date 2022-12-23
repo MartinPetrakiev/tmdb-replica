@@ -14,17 +14,19 @@
     align-items: center;
 
     .btn_submit {
+        padding: 10px 15px;
         margin-top: 20px;
         margin-bottom: 10px;
+        border-radius: 10px;
         font-family: "IBM Plex Sans", sans-serif;
+        font-size: 14px;
         font-weight: 700;
-        box-shadow: -1px 0px 5px var(--auth-main-color), 0px 1px 5px var(--auth-acc-color);
-        background-image: linear-gradient(45deg, var(--auth-main-color), var(--auth-acc-color));
-        background-size: 100%;
-        background-clip: border-box;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -moz-background-clip: text;
-        -moz-text-fill-color: transparent;
+        color: white;
+        background-color: #2195f3c6;
+    }
+
+    .btn_submit:hover {
+        background-color: var(--auth-main-color);
+        box-shadow: 0 0 10px var(--auth-main-color), 0 0 20px var(--auth-main-color), 0 0 40px var(--auth-main-color);
     }
 }
