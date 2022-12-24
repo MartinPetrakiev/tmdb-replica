@@ -1,37 +1,40 @@
 .container {
     font-family: "Roboto", sans-serif;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url("./assets/landing_page_bg.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.Box_wrapper {
-    width: 250px;
     display: flex;
     flex-direction: column;
-    background-color: #303030;
-    box-shadow: -1px 0px 5px #2196f3, 0px 1px 5px #f32121;
-    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: #1d253a;
+    padding: 15px;
+    border-radius: 10px;
+}
 
-    .Tab {
-        width: 50%;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .btn_submit {
+        padding: 10px 15px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        border-radius: 10px;
         font-family: "IBM Plex Sans", sans-serif;
+        font-size: 14px;
         font-weight: 700;
-        background-image: linear-gradient(45deg, #2196f3, #f32121);
-        background-size: 100%;
-        background-clip: border-box;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -moz-background-clip: text;
-        -moz-text-fill-color: transparent;
+        color: white;
+        background-color: #2195f3c6;
     }
-    .Tab:focus-within{
-        -webkit-text-fill-color: unset;
+
+    .btn_submit:hover {
+        background-color: var(--auth-main-color);
+        box-shadow: 0 0 10px var(--auth-main-color), 0 0 20px var(--auth-main-color), 0 0 40px var(--auth-main-color);
     }
+}
+
+.tab-panel {
+    display: flex;
+    flex-direction: column;
 }

@@ -1,7 +1,11 @@
-import React from 'react'
-import styles from '../styles/Login.module.scss';
+import React, { useState } from 'react'
+import styles from '../styles/AuthContainer.module.scss';
 import userPng from '../styles/assets/user.png';
-import { TextField, Box, Button, Avatar } from '@mui/material';
+import { Box, Button, Avatar, Tabs, Tab } from '@mui/material';
+import Login from './Login';
+import Register from './Register';
+import TabPanel from './TabPanel';
+
 
 function handleSubmit(e) {
   e.preventDefault()
@@ -10,6 +14,12 @@ function handleSubmit(e) {
 }
 
 function AuthContainer() {
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <div className={styles.container}>
       <Avatar sx={{ width: 100, height: 100, margin: '10px' }} alt="User" src={userPng} />
@@ -24,28 +34,42 @@ function AuthContainer() {
           },
         }}
       >
-        <TextField label="Email address" type="email" name="email" variant="filled" sx={{
-          '.MuiInputLabel-root': {
-            color: '#01b4e4'
-          },
-          '.MuiInputLabel-root.Mui-focused': {
-            color: '#1ed5a9'
-          },
-          '.MuiFilledInput-root': {
-            color: '#d2d2d2'
-          },
-        }} />
-        <TextField label="Password" type="password" name="password" variant="filled" sx={{
-          '.MuiInputLabel-root': {
-            color: '#1ed5a9'
-          },
-          '.MuiInputLabel-root.Mui-focused': {
-            color: '#01b4e4'
-          },
-          '.MuiFilledInput-root': {
-            color: '#d2d2d2'
-          },
-        }}/>
+        <Box sx={{ width: '100%' }}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs value={value} onChange={handleChange} sx={{
+              '& .MuiTabs-flexContainer': {
+                display: 'flex',
+                justifyContent: 'center',
+              },
+              '& .MuiButtonBase-root': {
+                color: '#01b4e4',
+              },
+              '& .MuiButtonBase-root.Mui-selected': {
+                color: '#1ed5a9',
+                backgroundColor: '#213463'
+              }
+            }}>
+              <Tab label="Login" sx={{
+                '&': {
+                  borderTopLeftRadius: '10px',
+                  flex: 0.5
+                }
+              }} />
+              <Tab label="Register" sx={{
+                '&': {
+                  borderTopRightRadius: '10px',
+                  flex: 0.5
+                }
+              }} />
+            </Tabs>
+          </Box>
+          <TabPanel value={value} index={0} className='tab-panel' style={{ display: 'flex', flexDirection: 'column' }}>
+            <Login />
+          </TabPanel>
+          <TabPanel value={value} index={1} className='tab-panel' style={{ display: 'flex', flexDirection: 'column' }}>
+            <Register />
+          </TabPanel>
+        </Box>
         <Button className={styles.btn_submit} type='submit'>Submit</Button>
       </Box>
     </div>
