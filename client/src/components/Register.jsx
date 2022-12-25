@@ -12,17 +12,17 @@ const CustomTextField = styled(TextField)({
         color: '#d2d2d2',
     },
     '.MuiFilledInput-root:before': {
-        borderBottom: '1px solid #1976d2'
+        borderBottom: '2px solid #1976d2'
     },
     '.MuiFilledInput-root:hover': {
-        borderBottom: '2px solid #1ed5a9'
+        borderBottom: '1px solid #1ed5a9'
     },
     '.MuiFilledInput-root:after': {
         borderBottom: '2px solid #1ed5a9'
     }
 });
 
-const Register = () => {
+const Register = ({ handleValueChange }) => {
     return (
         <>
             <CustomTextField
@@ -30,24 +30,28 @@ const Register = () => {
                 type="email"
                 name="email"
                 variant="filled"
+                onChange={handleValueChange}
             />
             <CustomTextField
                 label="Username"
                 type="text"
                 name="username"
                 variant="filled"
+                onChange={handleValueChange}
             />
             <CustomTextField
                 label="Password"
                 type="password"
                 name="password"
                 variant="filled"
+                onChange={handleValueChange}
             />
             <CustomTextField
                 label="Confirm Passowrd"
                 type="password"
                 name="confirmPassword"
                 variant="filled"
+                onChange={handleValueChange}
             />
         </>
     )

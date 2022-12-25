@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import { useNavigate } from "react-router-dom";
 import styles from '../styles/LandingPage.module.scss';
 import AuthContainer from './AuthContainer'
 
@@ -15,7 +14,7 @@ function LandingPage() {
     });
     const [authShow, setAuthShow] = useState(false);
 
-    const redirectToLogin = (event) => {
+    const showAuthentication = (event) => {
         event.preventDefault()
         setComponentStyles({image: { flexGrow: 0 }, hc_container: { flexGrow: 1}})
         setAuthShow(true)
@@ -33,7 +32,7 @@ function LandingPage() {
                             <h1>TMDB Replica</h1>
                             <p>Find what to watch next among millions of Movies and TV Shows. Enter now.</p>
                             <div className={styles.buttons_container}>
-                                <button className={styles.button1} onClick={redirectToLogin}>Explore now</button>
+                                <button className={styles.button1} onClick={showAuthentication}>Explore now</button>
                             </div>
                         </div>
                     )

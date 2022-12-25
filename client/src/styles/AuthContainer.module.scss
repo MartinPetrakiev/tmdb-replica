@@ -38,3 +38,21 @@
     display: flex;
     flex-direction: column;
 }
+
+.error {
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    padding: 10px 0px 10px 0px;
+    border-radius: 10px;
+    background-color: #d64242;
+    color: #702323;
+}
+
+.success {
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    padding: 10px 0px 10px 0px;
+    border-radius: 10px;
+    background-color: #34c240;
+    color: #1a6120;
+}
