@@ -32,10 +32,31 @@ function logout() {
 
 }
 
+async function searchData(searchValue) {
+    const url = process.env.REACT_APP_TMDB_API_URL + "/search/movie?api_key=" + process.env.REACT_APP_TMDB_API_KEY + "&language=en-US&query=" + searchValue
+    const response = await fetch(url);
+    return response;
+}
+
+async function getTrending() {
+    const url = process.env.REACT_APP_TMDB_API_URL + "/trending/movie/day?api_key=" + process.env.REACT_APP_TMDB_API_KEY
+    const response = await fetch(url);
+    return response;
+}
+
+async function getPopular() {
+    const url = process.env.REACT_APP_TMDB_API_URL + "/movie/popular?api_key=" + process.env.REACT_APP_TMDB_API_KEY
+    const response = await fetch(url);
+    return response;
+}
+
 const services = {
     login,
     register,
     logout,
+    searchData,
+    getTrending,
+    getPopular
 }
 
 export default services;
