@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/Header.module.scss';
 import {
@@ -19,11 +19,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 const pages = ['Movies', 'TV Shows', 'People'];
 const links_left = ['/movies', '/tv', '/people'];
 const settings = ['Profile', 'Logout']
-// const links_right = ['/profile', '/logout']
+const links_right = ['/profile', '/logout']
 
 const Header = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+    const [randomColor, setRandomColor] = useState('');
+
+    useEffect(() => {
+        setRandomColor("#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0').toUpperCase())
+    }, []);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -39,6 +44,7 @@ const Header = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
     return (
         <AppBar position="static" sx={{ backgroundColor: '#032541' }}>
             <Container maxWidth="xl">
@@ -115,7 +121,7 @@ const Header = () => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar sx={{ fontSize: '1rem', bgcolor: randomColor }}>MP</Avatar>
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -134,9 +140,9 @@ const Header = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
+                            {settings.map((setting, idx) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                    <Link to={links_right[idx]} className={styles.link}>{setting}</Link>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -144,42 +150,6 @@ const Header = () => {
                 </Toolbar>
             </Container>
         </AppBar>
-        // <header class={styles.header_wrapper}>
-        //     <div class="content">
-        //         <div class="nav_left">
-        //             <Link class="logo" to="/">
-        //                 <img
-        //                     src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
-        //                     alt="The Movie Database (TMDB)" width="154" height="20"
-        //                 />
-        //             </Link>
-
-        //             <ul class="nav_menu">
-        //                 <li class="nav_item k-first">
-        //                     <Link to="/movie">Movies</Link>
-        //                 </li>
-        //                 <li class="nav_item">
-        //                     <Link to="/tv">TV Shows</Link>
-        //                 </li>
-        //                 <li class="nav_item">
-        //                     <Link class="no_click k-link k-menu-link" href="/people">People</Link>
-        //                 </li>
-        //             </ul>
-        //         </div>
-
-        //         <div class="nav_right">
-        //             <ul class="primary">
-        //                 <li class="user">
-        //                     <Link class="user_link" title="Profile and Settings" to="/user/:id">M</Link>
-        //                 </li>
-
-        //                 <li class="search_button">
-        //                     <Link class="search" to="/search"></Link>
-        //                 </li>
-        //             </ul>
-        //         </div>
-        //     </div>
-        // </header>
     )
 }
 

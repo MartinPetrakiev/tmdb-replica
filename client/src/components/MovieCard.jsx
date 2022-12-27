@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/MovieCard.module.scss';
-import { MoreHorizRounded, FavoriteRounded, BookmarkRounded } from '@mui/icons-material';
-import { Divider, ListItemIcon, Menu, MenuItem, CircularProgress } from '@mui/material';
+import { FavoriteRounded, BookmarkRounded } from '@mui/icons-material';
+import { Divider, ListItemIcon, Menu, MenuItem, CircularProgress, SvgIcon } from '@mui/material';
 
 function MovieCard({ data }) {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -55,7 +55,9 @@ function MovieCard({ data }) {
                     <img className={styles.poster} src={'https://image.tmdb.org/t/p/w300' + data.poster_path} alt="Movie" />
                 </div>
                 <div className={styles.options}>
-                    <MoreHorizRounded className={styles.options_icon} onClick={handleClick} />
+                    <SvgIcon className={styles.options_icon} id="more_icon" viewBox="0 0 30 30" onClick={handleClick}>
+                        <path d="M 16 4 A 12 12 0 1 0 28 16 A 12.0131 12.0131 0 0 0 16 4 Z M 10 18 a 2 2 0 1 1 2 -2 A 2.00006 2.00006 0 0 1 10 18 Z m 6 0 a 2 2 0 1 1 2 -2 A 2.00006 2.00006 0 0 1 16 18 Z m 6 0 a 2 2 0 1 1 2 -2 A 2.00006 2.00006 0 0 1 22 18 Z"/>
+                    </SvgIcon>
                     <Menu
                         anchorEl={anchorEl}
                         open={open}
@@ -66,14 +68,15 @@ function MovieCard({ data }) {
                             sx: {
                                 overflow: 'visible',
                                 filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                                bgcolor: '#323232',
-                                color: '#fff',
+                                bgcolor: '#fff',
+                                color: '#303030',
                                 mt: 0.5,
                                 '& .MuiMenuItem-root': {
-                                    padding: '2px 10px 2px 10px',
+                                    padding: '6px 20px',
+                                    fontSize: '0.9em'
                                 },
                                 '& .MuiListItemIcon-root': {
-                                    color: '#E6B31E',
+                                    color: '#303030',
                                 }
                             },
                         }}

@@ -1,5 +1,5 @@
 .movie_card {
-    margin-left: 40px;
+    margin-left: 20px;
     width: 150px;
     min-width: 150px;
     background: transparent;
@@ -10,6 +10,7 @@
 
     .image_wrapper {
         position: relative;
+
         .image {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -18,33 +19,37 @@
             height: calc(150px * 1.5);
             background: #dbdbdb;
             overflow: hidden;
+
             .poster {
                 width: 100%;
                 height: 100%;
             }
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
             }
         }
+
         .options {
             position: absolute;
             top: 8px;
             right: 8px;
             z-index: 4;
             opacity: 0.8;
-            background-color: white;
-            border-radius: 50%;
             width: 24px;
             height: 24px;
+            
             .options_icon {
-                color: rgb(175, 174, 174);
+                fill: white;
             }
+
             &:hover {
                 cursor: pointer;
-                background-color: var(--main-acc-color);
+                filter: brightness(0) saturate(100%) invert(53%) sepia(33%) saturate(3054%) hue-rotate(156deg) brightness(98%) contrast(99%);
                 opacity: 1;
+
                 .options_icon {
-                    color:  var(--main-bg-color);
+                    color: var(--main-bg-color);
                 }
             }
         }
@@ -57,7 +62,7 @@
         display: flex;
         align-content: flex-start;
         flex-wrap: wrap;
-        
+
         .rating {
             background-color: black;
             width: 37px;
@@ -67,40 +72,48 @@
             top: -19px;
             left: 10px;
             padding: 1px;
+
             .track {
                 position: absolute;
                 top: 2px;
                 left: 2px;
             }
+
             .progress {
                 position: absolute;
                 top: 2px;
                 left: 2px;
             }
-            .percent{
+
+            .percent {
                 padding-top: 11px;
                 color: white;
                 font-size: 12px;
                 font-weight: 900;
                 text-align: center;
-                span{
+
+                span {
                     font-size: 6px;
                     vertical-align: super;
                 }
             }
         }
+
         h2 {
             font-size: 1em;
             font-weight: 700;
             width: 100%;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
                 color: var(--main-acc-color);
             }
         }
-        p{
-            color: rgba(0,0,0,0.6);
+
+        p {
+            color: rgba(0, 0, 0, 0.6);
         }
+
         h2,
         p {
             margin: 0;
