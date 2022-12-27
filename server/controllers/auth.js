@@ -1,0 +1,116 @@
+const {
+    userModel,
+    tokenBlacklistModel
+} = require('../models');
+
+const utils = require('../utils');
+const { authCookieName } = require('../app-config');
+
+const bsonToJson = (data) => { return JSON.parse(JSON.stringify(data)); };
+const removePassword = (data) => {
+    const { password, __v, ...userData } = data;
+    return userData;
+};
+
+function register(req, res, next) {
+    const { email, username, password, repeatPassword } = req.body;
+
+    return userModel.create({ email, username, password })
+        .then((createdUser) => {
+            createdUser = bsonToJson(createdUser);
+            createdUser = removePassword(createdUser);
+
+            const token = utils.jwt.createToken({ id: createdUser._id });
+            if (process.env.NODE_ENV === 'production') {
+                res.cookie(authCookieName, token, { httpOnly: true, sameSite: 'none', secure: true });
+            } else {
+                res.cookie(authCookieName, token, { httpOnly: true });
+            }
+            res.status(200)
+                .send({ ok: true, ...createdUser });
+        })
+        .catch(err => {
+            console.log(err);
+            if (err.name === 'MongoError' && err.code === 11000) {
+                let field = err.message.split("index: ")[1];
+                field = field.split(" dup key")[0];
+                field = field.substring(0, field.lastIndexOf("_"));
+                err.message = `This ${field} is already registered!`;
+                err.status = 409
+            } else if (err.name === 'ValidationError') {
+                let field = Object.keys(err.errors)[0]
+                err.message = `User validation failed: ${field.charAt(0).toUpperCase() + field.slice(1)} is required.`;
+                err.status = 409
+            }
+            next(err);
+        });
+}
+
+function login(req, res, next) {
+    const { email, password } = req.body;
+
+    userModel.findOne({ email })
+        .then(user => {
+            return Promise.all([user, user ? user.matchPassword(password) : false]);
+        })
+        .then(([user, match]) => {
+            if (!match) {
+                throw new Error('Wrong email or password')
+            }
+            user = bsonToJson(user);
+            user = removePassword(user);
+
+            const token = utils.jwt.createToken({ id: user._id });
+
+            if (process.env.NODE_ENV === 'production') {
+                res.cookie(authCookieName, token, { httpOnly: true, sameSite: 'none', secure: true });
+            } else {
+                res.cookie(authCookieName, token, { httpOnly: true });
+            }
+            res.status(200)
+                .send({ ok: true, ...user });
+        })
+        .catch(err => {
+            console.log(err);
+            err.status = 401
+            next(err)
+        });
+}
+
+function logout(req, res) {
+    const token = req.cookies[authCookieName];
+
+    tokenBlacklistModel.create({ token })
+        .then(() => {
+            res.clearCookie(authCookieName)
+                .status(204)
+                .send({ message: 'Logged out!' });
+        })
+        .catch(err => res.send(err));
+}
+
+function getProfileInfo(req, res, next) {
+    const { _id: userId } = req.user;
+
+    userModel.findOne({ _id: userId }, { password: 0, __v: 0 }) //finding by Id and returning without password and __v
+        .then(user => { res.status(200).json(user); })
+        .catch(next);
+}
+
+
+// function editProfileInfo(req, res, next) {
+//     const { _id: userId } = req.user;
+//     const { username, email } = req.body;
+
+//     userModel.findOneAndUpdate({ _id: userId }, { username, email }, { runValidators: true, new: true })
+//         .then(x => { res.status(200).json(x) })
+//         .catch(next);
+// }
+
+module.exports = {
+    login,
+    register,
+    logout,
+    getProfileInfo,
+    // editProfileInfo,
+};
