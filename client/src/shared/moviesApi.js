@@ -19,7 +19,7 @@ export const movieApiSlice = createApi({
         }),
         getSearchData: builder.query({
             query: (value) => {
-                return `/search/movie?api_key=${apiKey}&language=en-US&query=${value}`;
+                return `/search/multi?api_key=${apiKey}&language=en-US&query=${value}`;
             },
         }),
     })

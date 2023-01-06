@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.scss';
-import MovieCard from './MovieCard';
-// import services from '../shared/services';
-import Header from './Header';
-import { Button, InputBase, Paper } from '@mui/material';
+import { Header, SearchField, MovieCard } from '../components';
 
 import { useGetTrendingQuery, useGetPopularQuery } from '../shared/moviesApi';
 
@@ -23,7 +20,7 @@ function Home() {
     } else {
       setTrending(trendingList?.results.map((movie, idx) => (<MovieCard key={movie.id + "_" + idx} data={movie} />)) || (null))
     }
-  
+
     if (isErrorPopular) {
       console.error(errorPopular)
       setPopular(<div>An error has occurred!</div>);
@@ -48,22 +45,7 @@ function Home() {
               <h2>Welcome.</h2>
               <h3>Millions of movies, TV shows and people to discover. Explore now.</h3>
             </div>
-            <div className={styles.search}>
-              <Paper
-                component="form"
-                className={styles.submit_search}
-              >
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  className={styles.input_search}
-                  placeholder="Search for a movie, tv show, person......"
-                />
-                <Button type="button"
-                  className={styles.submit_search}>
-                  Search
-                </Button>
-              </Paper>
-            </div>
+            <SearchField />
           </div>
         </div>
         <section className={styles.section}>
