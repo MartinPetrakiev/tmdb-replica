@@ -22,6 +22,16 @@ export const movieApiSlice = createApi({
                 return `/search/multi?api_key=${apiKey}&language=en-US&query=${value}`;
             },
         }),
+        getDetailsMovie: builder.query({
+            query: (id) => {
+                return `/movie/${id}?api_key=${apiKey}`;
+            },
+        }),
+        getDetailsTv: builder.query({
+            query: (id) => {
+                return `/tv/${id}?api_key=${apiKey}`;
+            },
+        }),
     })
 });
 
@@ -29,6 +39,8 @@ export const {
     useGetTrendingQuery,
     useGetPopularQuery,
     useGetSearchDataQuery,
+    useGetDetailsMovieQuery,
+    useGetDetailsTvQuery
 } = movieApiSlice;
 
 

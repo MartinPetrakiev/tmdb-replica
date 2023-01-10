@@ -36,6 +36,7 @@ function SearchField() {
                         title = result.name;
                     }
                     return ({
+                        type: result.media_type,
                         id: result.id,
                         image: image,
                         title: title,
@@ -58,7 +59,6 @@ function SearchField() {
                         if (typeof newValue === 'string') {
                             setValue(newValue);
                         } else if (typeof newValue === 'object') {
-                            // Create a new value from the user input
                             setValue(newValue.title);
                         } else {
                             setValue(newValue);
@@ -94,7 +94,7 @@ function SearchField() {
                         props.key = option.id
                         return (
                             <li {...props}>
-                                <Link className={styles.search_result__link} to={`/details/${option.id}`}>
+                                <Link className={styles.search_result__link} to={(option.type !== 'person')? `/details/${option.type}/${option.id}` : `/person/${option.id}`}>
                                     <div className={styles.search_result__poster}>
                                         <img alt={option.title} loading="lazy" src={option.image} width="50" />
                                     </div>

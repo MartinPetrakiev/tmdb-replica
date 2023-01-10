@@ -9,3 +9,4 @@ export { default as SearchField } from "./SearchField";
 export { default as MovieCard } from "./MovieCard";
 export { default as Details } from "./Details";
 export { default as SearchPage } from "./SearchPage";
+export { default as Person } from "./Person";
